@@ -1,9 +1,20 @@
-@extends('layouts.main')
+namespace App\Models;
 
-@section('content')
+use illuminate\Database\Eloquent\Model;
 
-    <h1>JUDUL</h1>
-    <h5>PENULIS</h5>
-    <p>Paragraf</p>
+class Berita extend Model
 
-@endsection
+    private static $data_berita=[
+    [
+        "judul" => "mahasiswa ti",
+        "slug" => "mahasiswa-ti",
+        "penulis" => "Admin",
+        "content" => "lorem ipsum"
+
+    ],
+    [
+        "juudl" => "dosen ti",
+        "slug" => "dosen-ti",
+        "penulis" => "Admin",
+        "content" => "lorem ipsum",
+            ]

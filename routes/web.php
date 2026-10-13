@@ -17,3 +17,15 @@ Route::get('/', function () {
         "gambar" => ""
     ]);
 });
+
+$data_berita = [
+
+    "judul" => "mahasiswa ti"
+    "penulis" => "admin"
+    "konten" => 
+]
+
+Route::get('/berita/{slug}',function ($slug){
+    return view('')
+
+})
