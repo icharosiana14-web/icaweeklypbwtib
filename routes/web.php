@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Support\Facades\Route;
@@ -8,9 +9,9 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/', function () {
+Route::get('/profile', function () {
     return view('profile', [
-        "title" => "profile",
+        "title" => "Profile",
         "name" => "icha rosiana",
         "nim" => "13242520050",
         "prodi" => "teknologi informasi",
@@ -19,13 +20,28 @@ Route::get('/', function () {
 });
 
 $data_berita = [
+    [
+        "judul" => "mahasiswa ti",
+        "slug" => "mahasiswa-ti",
+        "penulis" => "admin",
+        "konten" => "Berita seputar mahasiswa teknologi informasi."
+    ],
+    [
+        "judul" => "dosen ti",
+        "slug" => "dosen-ti",
+        "penulis" => "admin",
+        "konten" => "Berita seputar dosen teknologi informasi."
+    ]
+];
 
-    "judul" => "mahasiswa ti"
-    "penulis" => "admin"
-    "konten" => 
-]
+Route::get('/berita/{slug}', function ($slug) use ($data_berita) {
+    $berita = collect($data_berita)->firstWhere('slug', $slug);
 
-Route::get('/berita/{slug}',function ($slug){
-    return view('')
+    if (!$berita) {
+        abort(404);
+    }
 
-})
+    return view('berita', [
+        "berita" => $berita
+    ]);
+});
