@@ -3,15 +3,33 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Berita;
 
 class BeritaController extends Controller
 {
-    public function tampilBerita ()
+    public function tampilBerita()
     {
-         return view('detail-berita',[
+        return view('berita', [
+            "title" => "Berita",
+            "beritas" => Berita::all(),
+        ]);
+    }
 
-        "title" => Berita::find($slug),
-        "berita" => Beritas::find($slug),
-    ]);
+    public function getBerita($slug) 
+    {
+        $beritas = Berita::all();
+
+        foreach($beritas as $berita)
+            {
+                if($berita['slug'] === $slug)
+                    {
+                        $beritatunggal = $berita;
+                    }
+            }
+
+        return view('beritatunggal', [
+            "title" => $beritatunggal['judul'],
+            "berita" => $beritatunggal,
+        ]);
     }
 }

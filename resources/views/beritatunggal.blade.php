@@ -6,7 +6,7 @@
         <h5>{{ $berita['penulis'] }}</h5>
     </div>
 
-    <div class="text-justify mt-4">
+    <div class="text-justify">
         <p>{{ $berita['konten'] }}</p>
     </div>
 

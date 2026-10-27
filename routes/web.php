@@ -1,47 +1,30 @@
-
 <?php
 
+use App\Http\Controllers\BeritaController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('home', [
-        "title" => "Home"
+        "title" => "home"
     ]);
 });
 
 Route::get('/profile', function () {
     return view('profile', [
-        "title" => "Profile",
-        "name" => "icha rosiana",
+        "title" => "profile",
+        "name" => "Icha rosiana",
         "nim" => "13242520050",
-        "prodi" => "teknologi informasi",
-        "gambar" => ""
+        "prodi" => "Teknologi Informasi",
+        "gambar" => "images"
     ]);
 });
 
-$data_berita = [
-    [
-        "judul" => "mahasiswa ti",
-        "slug" => "mahasiswa-ti",
-        "penulis" => "admin",
-        "konten" => "Berita seputar mahasiswa teknologi informasi."
-    ],
-    [
-        "judul" => "dosen ti",
-        "slug" => "dosen-ti",
-        "penulis" => "admin",
-        "konten" => "Berita seputar dosen teknologi informasi."
-    ]
-];
-
-Route::get('/berita/{slug}', function ($slug) use ($data_berita) {
-    $berita = collect($data_berita)->firstWhere('slug', $slug);
-
-    if (!$berita) {
-        abort(404);
-    }
-
-    return view('berita', [
-        "berita" => $berita
+Route::get('/contact', function () {
+    return view('contact', [
+        "title" => "contact"
     ]);
 });
+
+Route::get('/berita',[BeritaController::class,'tampilBerita']);
+
+Route::get('/berita/{slug}', [BeritaController::class, 'getBerita']);

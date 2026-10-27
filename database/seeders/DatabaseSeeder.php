@@ -5,6 +5,9 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,9 +20,19 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+       DB::table('users')->insert([
+            'name' => Str::random(10),
+            'email' => 'icharosiana14@gmail.com',
+            'password' => Hash::make('rosiana14'),
+        ]);
+
+        DB::table('beritas')->insert([
+            'judul' => 'ikan sapu-sapu dan guppy',
+            'slug' => 'ikan sapu-sapu dan guppy',
+            'penulis' => 'jean grey',
+            'konten' => 'A seeder class only contains one method by default: run.
+            This method is called when the db:seed Artisan command is executed. Within the run method,
+            you may insert data into your database however you wish.',
         ]);
     }
 }
